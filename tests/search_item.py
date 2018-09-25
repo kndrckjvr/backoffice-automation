@@ -21,22 +21,13 @@ print ("Password entered")
 
 elem.send_keys(Keys.RETURN)
 sleep(2)
-# scenario "here"
-# elem = driver.find_element_by_link_text("here")
-# if elem != null
-#     elem.click()
 
 #Item Maintenance --> Menu Items
-#elem = driver.find_element_by_xpath("//ul[@class='sidebar-menu']//li[2]//a[@class='dropdown-toggle']").click()
-#sleep(1)
-#elem = driver.find_element_by_xpath("//ul[@class='sidebar-menu']//li[2]//ul//li[@id='menuitems']").click()
+driver.find_element_by_xpath("//ul[@class='sidebar-menu']//li[2]//a[@class='dropdown-toggle']").click()
+driver.find_element_by_xpath("//ul[@class='sidebar-menu']//li[2]//ul//li[@id='menuitems']").click()
+sleep(1)
+driver.find_element_by_id("search").click()
 
-elem = driver.find_element_by_xpath("//nav//div[@class='navbar-custom-menu']//ul//li//a").click()
-print("Opened Account Dropdown")
-sleep(1)
-elem = driver.find_element_by_xpath("//nav//div[@class='navbar-custom-menu']//ul//li//ul//li//div[@class='pull-right']//a").click()
-print("Signed out")
-sleep(1)
-driver.close() 
+#driver.close()
 print ("Done") 
-exit()
+#exit()
