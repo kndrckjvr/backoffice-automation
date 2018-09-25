@@ -1,11 +1,10 @@
-## SETUP_TEST_ENVIRONMENT_SELENIUM_WEBDRIVER_LINUX
+# SETUP_TEST_ENVIRONMENT_SELENIUM_WEBDRIVER_LINUX
 
-> Operating System Name: Lubuntu 16.04
+* Operating System Name: Lubuntu 16.04
+* Type: 64-bit
 
-> Type: 64-bit
 
-
-# A. INSTALLING PYTHON
+## A. INSTALLING PYTHON
 ```
 sudo apt-get update
 sudo apt-get install build-essential checkinstall
@@ -22,7 +21,7 @@ Result:
 ```
 Python 2.7.14
 ```
-# B. INSTALL CHROMEDRIVER
+## B. INSTALL CHROMEDRIVER
 
 ```
 cd /usr/local/bin
@@ -34,13 +33,13 @@ sudo chown root:root /usr/local/bin/chromedriver
 sudo chmod 0755 /usr/local/bin/chromedriver
 ```
 
-# C. INSTALL SELENIUM
+## C. INSTALL SELENIUM
 ```
 sudo apt-get install python-pip
 sudo pip install selenium
 ```
 
-# D. INSTALL VSCODE
+## D. INSTALL VSCODE
 ```
 wget -N https://az764295.vo.msecnd.net/stable/f46c4c469d6e6d8c46f268d1553c5dc4b475840f/code_1.27.2-1536736588_amd64.deb -P ~/
 sudo dpkg -i code_1.27.2-1536736588_amd64.deb
