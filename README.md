@@ -136,3 +136,8 @@ https://aka.ms/win32-x64-user-stable
 
 Click Next until setup ends
 ```
+
+## References
+* https://selenium-python.readthedocs.io/installation.html
+* https://code.visualstudio.com/
+* https://www.python.org/downloads/release/python-2714/
