@@ -68,7 +68,7 @@ Edit "Path" Variable
 if a dialog pop-up with a list of paths
 Press New then input "C:/Python27" (without the "")
 
-if a dialog pop-p with a list of paths separated with semi-colons (;)
+if a dialog pop-up with a list of paths separated with semi-colons (;)
 Input "C:/Python27;" (without the "")
 
 Press Ok until System Properties is closed.
@@ -96,7 +96,7 @@ Edit "Path" Variable
 if a dialog pop-up with a list of paths
 Press New then input "C:/Users/<computer-name>/chromedriver_win32" (without the "")
 
-if a dialog pop-p with a list of paths separated with semi-colons (;)
+if a dialog pop-up with a list of paths separated with semi-colons (;)
 Input "C:/<computer-name>/chromedriver_win32;" (without the "")
 
 Press Ok until System Properties is closed.
