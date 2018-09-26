@@ -7,7 +7,7 @@ from utils.signout import SignOut
 
 class Login:
     def login(self, url, usr, pwd, driver):
-        #Opening Driver
+        #Opening Drivers
         OpenDriver().openDriver(driver, url)
 
         Login().inputFields(usr, pwd, driver)        
