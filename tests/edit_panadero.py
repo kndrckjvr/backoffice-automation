@@ -34,7 +34,7 @@ while cont:
             if no_of_items > 1:
                 while True:
                     down=input("Enter how many down arrows? [1-"+str(no_of_items)+"] ")
-                    if down < no_of_items or down != 0:
+                    if down <= no_of_items and down != 0:
                         Simulate().down_enter(Configs.drv, down)    
                         break
                     else:
@@ -46,7 +46,15 @@ while cont:
     sleep(1)
 
     Configs.drv.find_element_by_xpath("//*[@id='MenuItems_DR_DEF_QUANTITY']").clear()
-    dr_qty=raw_input("Enter DR Quantity: ")
+    dr_qty = 0
+    while dr_qty < 1 or dr_qty > 4294967295:
+        dr_qty=input("Enter DR Quantity: ")
+        if dr_qty < 1:
+            print("Minimum is 1!")
+            pass
+        if dr_qty > 4294967295:
+            print("Maximum is 4294967295!")
+            pass
     Simulate().input_by_xpath(Configs.drv, "//*[@id='MenuItems_DR_DEF_QUANTITY']", dr_qty)
     print("Edited DR Default Quantity")
     Simulate().click_by_xpath(Configs.drv, "//*[@id='save']")
