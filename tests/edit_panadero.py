@@ -26,6 +26,7 @@ while cont:
         Simulate().input_by_id(Configs.drv, "keyword", search_code)
         print("Entered Search Code " + search_code)
         sleep(1)
+        print("Displayed Item with Search Code: " + search_code)
         if Configs.drv.find_element_by_xpath("//*[@id='menu-item_search']/div[1]/table/tbody/tr/td").text == "No results found.":
             print("No results found.")
         else:
@@ -40,7 +41,6 @@ while cont:
                         print("Only "+str(no_of_items)+" are only available!")
             break
     
-    print("Displayed Item with Search Code: " + search_code)
     Simulate().click_by_xpath(Configs.drv, "//*[@id='edit']")
     print("Opened Edit Item")
     sleep(1)
