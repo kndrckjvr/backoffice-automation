@@ -1,9 +1,10 @@
-dr_qty = 0
-while dr_qty < 1 or dr_qty > 4294967295:
-    dr_qty=input("Enter DR Quantity: ")
-    if dr_qty < 1:
-        print("Minimum is 1!")
-        pass
-    if dr_qty > 4294967295:
-        print("Maximum is 4294967295!")
-        pass
+from utils.login import Login
+from utils.signout import SignOut
+from config.configs import Configs
+from time import sleep
+
+Login().login(Configs.url, Configs.usr, Configs.pwd, Configs.drv)
+sleep(10)
+SignOut().signOut(Configs.drv)
+Configs.drv.close()
+exit()
