@@ -3,8 +3,8 @@ from utils.signout import SignOut
 from config.configs import Configs
 from time import sleep
 
-Login().login(Configs.url, Configs.usr, Configs.pwd, Configs.drv)
+Login().login(Configs.url, Configs.usr, Configs.pwd)
 sleep(10)
-SignOut().signOut(Configs.drv)
+SignOut().signOut()
 Configs.drv.close()
 exit()
