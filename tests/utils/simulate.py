@@ -27,9 +27,10 @@ class Simulate:
         actions.send_keys(Keys.ENTER)
         actions.perform()
 
-    def down_enter(self, driver):
+    def down_enter(self, driver, down):
         actions = ActionChains(driver)
-        actions.send_keys(Keys.DOWN)
+        for x in range(int(down)):
+            actions.send_keys(Keys.DOWN)
         actions.send_keys(Keys.ENTER)
         actions.perform()
     

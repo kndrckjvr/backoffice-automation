@@ -20,24 +20,31 @@ while cont:
     Simulate().click_by_id(Configs.drv, "search")
     print("Opened Search Modal")
     sleep(1)
+
     while True:
-        item_code=raw_input("Enter Search Code: ")
-        Simulate().input_by_id(Configs.drv, "keyword", item_code)
-        print("Entered Search Code " + item_code)
+        search_code=raw_input("Enter Search Code: ")
+        Simulate().input_by_id(Configs.drv, "keyword", search_code)
+        print("Entered Search Code " + search_code)
         sleep(1)
         if Configs.drv.find_element_by_xpath("//*[@id='menu-item_search']/div[1]/table/tbody/tr/td").text == "No results found.":
             print("No results found.")
         else:
-            Simulate().down_enter(Configs.drv)
+            no_of_items=len(Configs.drv.find_elements_by_xpath("//*[@id='menu-item_search']/div[1]/table/tbody/tr[@class='can_be_selected']"))
+            if no_of_items > 1:
+                while True:
+                    down=input("Enter how many down arrows? [1-"+str(no_of_items)+"] ")
+                    if down < no_of_items or down != 0:
+                        Simulate().down_enter(Configs.drv, down)    
+                        break
+                    else:
+                        print("Only "+str(no_of_items)+" are only available!")
             break
     
-    sleep(1)
-    
-    print("Displayed Item " + item_code)
+    print("Displayed Item with Search Code: " + search_code)
     Simulate().click_by_xpath(Configs.drv, "//*[@id='edit']")
+    print("Opened Edit Item")
     sleep(1)
 
-    print("Opened Edit Item")
     Configs.drv.find_element_by_xpath("//*[@id='MenuItems_DR_DEF_QUANTITY']").clear()
     dr_qty=raw_input("Enter DR Quantity: ")
     Simulate().input_by_xpath(Configs.drv, "//*[@id='MenuItems_DR_DEF_QUANTITY']", dr_qty)
@@ -79,4 +86,5 @@ while cont:
 SignOut().signOut(Configs.drv)
 
 Configs.drv.close()
+print("Browser Closed")
 exit()
