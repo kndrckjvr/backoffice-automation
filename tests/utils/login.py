@@ -1,9 +1,8 @@
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support.select import Select
 from time import sleep 
 from utils.opendriver import OpenDriver
 from utils.signout import SignOut
+from utils.simulate import Simulate
 
 class Login:
     def login(self, url, usr, pwd, driver):
@@ -26,13 +25,11 @@ class Login:
                 Login().inputFields(usr, pwd, driver)
 
     def inputFields(self, usr, pwd, driver):
-        elem = driver.find_element_by_id("LoginForm_username")
-        elem.send_keys(usr)
-        print ("Email Id entered") 
+        Simulate().input_by_id(driver, "LoginForm_username", usr)
+        print ("Email Id entered")
 
-        elem = driver.find_element_by_id("LoginForm_password")
-        elem.send_keys(pwd)
+        Simulate().input_by_id(driver, "LoginForm_password", pwd)
         print ("Password entered")
 
-        elem.send_keys(Keys.RETURN)
+        Simulate().click_by_xpath(driver, "//form[@id='login-form']//div[3]//div[1]//button")
         sleep(1)

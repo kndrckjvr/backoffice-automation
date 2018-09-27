@@ -5,11 +5,11 @@ from config.configs import Configs
 from time import sleep
 from selenium.webdriver.common.action_chains import ActionChains
 
-
 Login().login(Configs.url, Configs.usr, Configs.pwd, Configs.drv)
 driver = Configs.drv
 
 print("Dashboard Opened")
+
 driver.find_element_by_xpath("//ul[@class='sidebar-menu']//li[5]//a[@class='dropdown-toggle']").click()
 sleep(1)
 driver.find_element_by_xpath("//ul[@class='sidebar-menu']//li[5]//ul//li[@id='directreturn']").click()
@@ -54,9 +54,14 @@ driver.execute_script("arguments[0].click();", elem)
 print("Save")
 
 sleep(3)
-driver.find_element_by_xpath("//html//body//div[3]//div//div//div[2]//button[2]").click()
+elem = driver.find_element_by_xpath("/html/body/div[3]/div/div/div[2]/button[2]")
+driver.execute_script("arguments[0].click();", elem)
+elem = driver.find_element_by_xpath("//*[@id='post']")
+driver.execute_script("arguments[0].click();", elem)
+elem = driver.find_element_by_xpath("/html/body/div[3]/div/div/div[2]/button[1]")
+driver.execute_script("arguments[0].click();", elem)
 # //*[@id="post"]
-sleep(1)
-SignOut().signOut(driver)
-driver.close()
-exit()
+# sleep(1)
+# SignOut().signOut(driver)
+# driver.close()
+# exit()
