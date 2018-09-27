@@ -13,10 +13,12 @@ class Simulate:
 
     def input_by_xpath(self, driver, xpath, input):
         elem = driver.find_element_by_xpath(xpath)
+        elem.clear()
         elem.send_keys(input)
 
     def input_by_id(self, driver, id, input):
         elem = driver.find_element_by_id(id)
+        elem.clear()
         elem.send_keys(input)
 
     def double_enter(self, driver):

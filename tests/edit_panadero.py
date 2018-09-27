@@ -20,12 +20,17 @@ while cont:
     Simulate().click_by_id(Configs.drv, "search")
     print("Opened Search Modal")
     sleep(1)
-
-    item_code=raw_input("Enter Item Code: ")
-    Simulate().input_by_id(Configs.drv, "keyword", item_code)
-    print("Entered Item Code " + item_code)
-    sleep(1)
-    Simulate().down_enter(Configs.drv)
+    while True:
+        item_code=raw_input("Enter Search Code: ")
+        Simulate().input_by_id(Configs.drv, "keyword", item_code)
+        print("Entered Search Code " + item_code)
+        sleep(1)
+        if Configs.drv.find_element_by_xpath("//*[@id='menu-item_search']/div[1]/table/tbody/tr/td").text == "No results found.":
+            print("No results found.")
+        else:
+            Simulate().down_enter(Configs.drv)
+            break
+    
     sleep(1)
     
     print("Displayed Item " + item_code)
