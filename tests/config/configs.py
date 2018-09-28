@@ -15,4 +15,3 @@ class Configs(object):
 
     # Email
     eml = "kendrickjaviercosca@gmail.com"
-    

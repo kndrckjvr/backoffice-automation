@@ -14,11 +14,10 @@ Configs.drv.find_element_by_xpath("//ul[@class='sidebar-menu']//li[2]//ul//li[@i
 
 print("Menu Items Opened")
 
-elem = Configs.drv.find_element_by_id('add')
-if elem.get_attribute("disabled") == "disabled":
+if Simulate().get_attribute_by_id("add", "disabled") == "disabled":
     print("Add Menu Item Opened")
 else:
-    elem.click()
+    Simulate().click_by_id("add")
     print("Add Menu Item Opened")
     sleep(1)
 

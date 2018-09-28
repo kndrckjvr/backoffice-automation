@@ -25,7 +25,7 @@ class Login:
         # Error on inputs
         if Configs.drv.title == "Back Office - Login Site":
             # Scenario when the user has inserted wrong data
-            if "Incorrect user code or password." == Configs.drv.find_element_by_id("LoginForm_password_em_").text:
+            if "Incorrect user code or password." == Simulate().get_text_by_id("LoginForm_password_em_"):
                 print(Configs.drv.find_element_by_id("LoginForm_password_em_").text)
                 sleep(10)
                 Configs.drv.close()

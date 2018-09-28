@@ -27,6 +27,16 @@ class Simulate:
         elem = Configs.drv.find_element_by_link_text(text)
         Configs.drv.execute_script("arguments[0].click();", elem)
 
+    # input_by_id Function
+    # function to simulate an input using the element's Id
+    # params id input
+    # id ([id] Element's Id)
+    # input ([Text Input] Text input)
+    def input_by_id(self, id, input):
+        elem = Configs.drv.find_element_by_id(id)
+        elem.clear()
+        elem.send_keys(input)
+
     # input_by_xpath Function
     # function to simulate an input using the element's xPath
     # params xpath input
@@ -37,15 +47,49 @@ class Simulate:
         elem.clear()
         elem.send_keys(input)
 
-    # input_by_id Function
-    # function to simulate an input using the element's Id
-    # params id input
+    # get_text_by_id Function
+    # function to get text of the element using its id
+    # param id
     # id ([id] Element's Id)
-    # input ([Text Input] Text input)
-    def input_by_id(self, id, input):
-        elem = Configs.drv.find_element_by_id(id)
-        elem.clear()
-        elem.send_keys(input)
+    def get_text_by_id(self, id):
+        return Configs.drv.find_element_by_id(id).text
+    
+    # get_text_by_xpath Function
+    # function to get text of the element using its xpath
+    # param xpath
+    # xpath ([xPath] Element's xPath)
+    def get_text_by_xpath(self, xpath):
+        return Configs.drv.find_element_by_xpath(xpath).text
+    
+    # get_elements_by_id Function
+    # function to get elements inside the element using its id
+    # param id
+    # id ([id] Element's Id)
+    def get_elements_by_id(self, id):
+        return Configs.drv.find_elements_by_id(id)
+    
+    # get_elements_by_xpath Function
+    # function to get elements inside the element using its xpath
+    # param xpath
+    # xpath ([xPath] Element's xPath)
+    def get_elements_by_xpath(self, xpath):
+        return Configs.drv.find_elements_by_xpath(xpath)
+
+    # get_attribute_by_id Function
+    # function to get attribute text inside the element using its id
+    # param id attribute
+    # id ([id] Element's Id)
+    # attribute ([attribute] Element's Attribute)
+    def get_attribute_by_id(self, id, attribute):
+        return Configs.drv.find_element_by_id(id).get_attribute(attribute)
+
+    # get_attribute_by_xpath Function
+    # function to get attribute text inside the element using its xpath
+    # param xpath
+    # xpath ([xPath] Element's xPath)
+    # attribute ([attribute] Element's Attribute)
+    def get_attribute_by_xpath(self, xpath, attribute):
+        return Configs.drv.find_element_by_xpath(xpath).get_attribute(attribute)
 
     # double_enter Function
     # function to simulate a Double Enter
@@ -65,4 +109,3 @@ class Simulate:
             actions.send_keys(Keys.DOWN)
         actions.send_keys(Keys.ENTER)
         actions.perform()
-    

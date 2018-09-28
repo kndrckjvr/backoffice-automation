@@ -37,10 +37,10 @@ while cont:
         # Display Results
         print("Displayed Item with Search Code: " + search_code)
         # Checking Results
-        if Configs.drv.find_element_by_xpath("//*[@id='menu-item_search']/div[1]/table/tbody/tr/td").text == "No results found.":
+        if Simulate().get_text_by_xpath("//*[@id='menu-item_search']/div[1]/table/tbody/tr/td") == "No results found.":
             print("No results found.")
         else:
-            no_of_items=len(Configs.drv.find_elements_by_xpath("//*[@id='menu-item_search']/div[1]/table/tbody/tr[@class='can_be_selected']"))
+            no_of_items=len(Simulate().get_elements_by_xpath("//*[@id='menu-item_search']/div[1]/table/tbody/tr[@class='can_be_selected']"))
             if no_of_items > 1:
                 while True:
                     down=input("Enter how many down arrows? [1-"+str(no_of_items)+"] ")
@@ -57,10 +57,8 @@ while cont:
     print("Opened Edit Item")
     sleep(1)
 
-    # Focusing to DR Default Quantity
-    Configs.drv.find_element_by_xpath("//*[@id='MenuItems_DR_DEF_QUANTITY']").clear()
-    dr_qty = 0
     # Checking the inputs
+    dr_qty = 0
     while dr_qty < 1 or dr_qty > 4294967295:
         dr_qty=input("Enter DR Quantity: ")
         if dr_qty < 1:
@@ -69,6 +67,7 @@ while cont:
         if dr_qty > 4294967295:
             print("Maximum is 4294967295!")
             pass
+
     # Insert the Data
     Simulate().input_by_xpath("//*[@id='MenuItems_DR_DEF_QUANTITY']", dr_qty)
     print("Edited DR Default Quantity")
