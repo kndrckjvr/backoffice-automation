@@ -25,16 +25,49 @@ else:
     Simulate().click_by_id("add")
     print("Add Direct Receiving Opened")
     sleep(1)
-
 Configs.drv.find_element_by_xpath("//div[@id='DirectReturn_SUP_CODE_chzn']").click()
-Configs.drv.find_element_by_xpath("//div[@id='DirectReturn_SUP_CODE_chzn']//div[@class='chzn-drop']//ul[@class='chzn-results']//li[@id='DirectReturn_SUP_CODE_chzn_o_0']").click()
+print("Supplier Dropdown Opened")
 # Simulate().click_by_xpath("//div[@id='DirectReturn_SUP_CODE_chzn']")
-# Simulate().click_by_xpath("//div[@id='DirectReturn_SUP_CODE_chzn']//div[@class='chzn-drop']//ul[@class='chzn-results']//li[@id='DirectReturn_SUP_CODE_chzn_o_0']")
-print("Added Supplier")
+# elem = Simulate().get_elements_by_xpath("//*[@id='DirectReturn_SUP_CODE_chzn']/div/ul/li")
+# elem = Simulate().get_elements_by_xpath("//div[@id='DirectReturn_SUP_CODE_chzn']//div[@class='chzn-drop']//ul[@class='chzn-results']")
+# print(elem[0].text)
+# exit()
+elem = Simulate().get_elements_by_xpath("//div[@id='DirectReturn_SUP_CODE_chzn']//div[@class='chzn-drop']//ul//li")
+no_of_elements = len(elem)
+for x in xrange(no_of_elements):
+    print("["+str(x+1)+"] ("+elem_text[x]+")")
+no_of_elements += 1
+cond=0
+elem_text = {}
+while cond <= 0 or cond > no_of_elements:
+    cond = input("Choose a Supplier: ")
+    if cond <= 0:
+        print("Error: Minimum is 1")
+    if cond > no_of_elements:
+        print("Error: Maximum is " + str(no_of_elements))
+cond =- 1
+Simulate().down_enter(cond)
+print("Added Supplier: "+ elem_text[cond])
 sleep(1)
 
 Configs.drv.find_element_by_xpath("//div[@id='DirectReturn_LOC_CODE_chzn']").click()
-Configs.drv.find_element_by_xpath("//div[@id='DirectReturn_LOC_CODE_chzn']//div[@class='chzn-drop']//ul[@class='chzn-results']//li[@id='DirectReturn_LOC_CODE_chzn_o_0']").click()
+#Simulate().click_by_xpath("//div[@id='DirectReturn_LOC_CODE_chzn']//div[@class='chzn-drop']//ul//li[@id='DirectReturn_LOC_CODE_chzn_o_0']")
+elem = Simulate().get_elements_by_xpath("//div[@id='DirectReturn_LOC_CODE_chzn']//div[@class='chzn-drop']//ul//li")
+no_of_elements = len(elem)
+for x in xrange(no_of_elements):
+    print("["+str(x)+"] ("+elem[x].text+")")
+no_of_elements += 1
+cond=0
+while cond <= 0 or cond > no_of_elements:
+    cond = input("Choose a Location: ")
+    if cond <= 0:
+        print("Error: Minimum is 1")
+    if cond > no_of_elements:
+        print("Error: Maximum is " + str(no_of_elements))
+cond =- 1
+Simulate().down_enter(cond)
+print("Added Location: "+ elem[cond].text)
+sleep(1)
 
 # Simulate().click_by_xpath("//div[@id='DirectReturn_LOC_CODE_chzn']")
 # Simulate().click_by_xpath("//div[@id='DirectReturn_LOC_CODE_chzn']//div[@class='chzn-drop']//ul[@class='chzn-results']//li[@id='DirectReturn_LOC_CODE_chzn_o_0']")
@@ -81,7 +114,8 @@ while True:
 Simulate().click_by_id("save")
 print("Save")
 
-sleep(3)
+sleep(1)
+print("Ready for print")
 Simulate().click_by_xpath("/html/body/div[3]/div/div/div[2]/button[1]")
 Simulate().click_by_xpath("//*[@id='post']")
 sleep(3)
