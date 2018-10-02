@@ -85,11 +85,25 @@ class Simulate:
 
     # get_attribute_by_xpath Function
     # function to get attribute text inside the element using its xpath
-    # param xpath
+    # param xpath attribute
     # xpath ([xPath] Element's xPath)
     # attribute ([attribute] Element's Attribute)
     def get_attribute_by_xpath(self, xpath, attribute):
         return Configs.drv.find_element_by_xpath(xpath).get_attribute(attribute)
+
+    # element_is_visible_by_id Function
+    # function to check if element is Visible using its id
+    # param id
+    # id ([id] Element's Id)
+    def element_is_visible_by_id(self, id):
+        return Configs.drv.find_element_by_id(id).is_displayed()
+
+    # element_is_visible_by_xpath Function
+    # function to check if element is Visible using its xpath
+    # param xpath
+    # xpath ([xPath] Element's xPath)
+    def element_is_visible_by_xpath(self, xpath):
+        return Configs.drv.find_element_by_xpath(xpath).is_displayed()
 
     # double_enter Function
     # function to simulate a Double Enter
