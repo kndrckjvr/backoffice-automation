@@ -38,11 +38,12 @@ sudo pip install selenium
 ```
 
 ## D. INSTALL VISUAL STUDIO CODE
+* Download Visual Studio Code
+* https://code.visualstudio.com/ .deb file
+* 
 ```
-wget -N https://az764295.vo.msecnd.net/stable/f46c4c469d6e6d8c46f268d1553c5dc4b475840f/code_1.27.2-1536736588_amd64.deb -P ~/
-sudo dpkg -i code_1.27.2-1536736588_amd64.deb
+sudo dpkg -i <name-of-the-file.deb()>
 sudo apt-get install -f
-rm ~/code_1.27.2-1536736588_amd64.deb
 ```
 
 # Windows 10
