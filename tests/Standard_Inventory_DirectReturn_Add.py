@@ -4,6 +4,54 @@ from utils.signout import SignOut
 from utils.simulate import Simulate
 from time import sleep
 
+def chooseSupplier():
+    Configs.drv.find_element_by_xpath("//div[@id='DirectReturn_SUP_CODE_chzn']").click()
+    print("Supplier Dropdown Opened")
+
+    elem = Simulate().get_elements_by_xpath("//div[@id='DirectReturn_SUP_CODE_chzn']//div[@class='chzn-drop']//ul//li")
+    no_of_elements = len(elem)
+    elem_text = []
+    for x in xrange(no_of_elements):
+        y = x + 1
+        elem_text.append(elem[x].text)
+        print("["+str(y)+"] ("+elem_text[x]+")")
+    no_of_elements += 1
+    cond=0
+    while cond <= 0 or cond > no_of_elements:
+        cond = input("Choose a Supplier: ")
+        if cond <= 0:
+            print("Error: Minimum is 1")
+        elif cond > no_of_elements:
+            print("Error: Maximum is " + str(no_of_elements))
+    Simulate().down_enter(cond)
+    cond -= 1
+    print("Added Supplier: "+ elem_text[cond])
+    sleep(1)
+
+def chooseLocation():
+    Configs.drv.find_element_by_xpath("//div[@id='DirectReturn_LOC_CODE_chzn']").click()
+    print("Location Dropdown Opened")
+
+    elem = Simulate().get_elements_by_xpath("//div[@id='DirectReturn_LOC_CODE_chzn']//div[@class='chzn-drop']//ul//li")
+    no_of_elements = len(elem)
+    elem_text = []
+    for x in xrange(no_of_elements):
+        y = x + 1
+        elem_text.append(elem[x].text)
+        print("["+str(y)+"] ("+elem_text[x]+")")
+    no_of_elements += 1
+    cond=0
+    while cond <= 0 or cond > no_of_elements:
+        cond = input("Choose a Location: ")
+        if cond <= 0:
+            print("Error: Minimum is 1")
+        if cond > no_of_elements:
+            print("Error: Maximum is " + str(no_of_elements))
+    cond -= 1
+    Simulate().down_enter(cond)
+    print("Added Location: "+ elem_text[cond])
+    sleep(1)
+
 # Login to Login Page
 Login().login(Configs.url, Configs.usr, Configs.pwd)
 
@@ -25,53 +73,10 @@ else:
     Simulate().click_by_id("add")
     print("Add Direct Receiving Opened")
     sleep(1)
-Configs.drv.find_element_by_xpath("//div[@id='DirectReturn_SUP_CODE_chzn']").click()
-print("Supplier Dropdown Opened")
-# Simulate().click_by_xpath("//div[@id='DirectReturn_SUP_CODE_chzn']")
-# elem = Simulate().get_elements_by_xpath("//*[@id='DirectReturn_SUP_CODE_chzn']/div/ul/li")
-# elem = Simulate().get_elements_by_xpath("//div[@id='DirectReturn_SUP_CODE_chzn']//div[@class='chzn-drop']//ul[@class='chzn-results']")
-# print(elem[0].text)
-# exit()
-elem = Simulate().get_elements_by_xpath("//div[@id='DirectReturn_SUP_CODE_chzn']//div[@class='chzn-drop']//ul//li")
-no_of_elements = len(elem)
-for x in xrange(no_of_elements):
-    print("["+str(x+1)+"] ("+elem_text[x]+")")
-no_of_elements += 1
-cond=0
-elem_text = {}
-while cond <= 0 or cond > no_of_elements:
-    cond = input("Choose a Supplier: ")
-    if cond <= 0:
-        print("Error: Minimum is 1")
-    if cond > no_of_elements:
-        print("Error: Maximum is " + str(no_of_elements))
-cond =- 1
-Simulate().down_enter(cond)
-print("Added Supplier: "+ elem_text[cond])
-sleep(1)
 
-Configs.drv.find_element_by_xpath("//div[@id='DirectReturn_LOC_CODE_chzn']").click()
-#Simulate().click_by_xpath("//div[@id='DirectReturn_LOC_CODE_chzn']//div[@class='chzn-drop']//ul//li[@id='DirectReturn_LOC_CODE_chzn_o_0']")
-elem = Simulate().get_elements_by_xpath("//div[@id='DirectReturn_LOC_CODE_chzn']//div[@class='chzn-drop']//ul//li")
-no_of_elements = len(elem)
-for x in xrange(no_of_elements):
-    print("["+str(x)+"] ("+elem[x].text+")")
-no_of_elements += 1
-cond=0
-while cond <= 0 or cond > no_of_elements:
-    cond = input("Choose a Location: ")
-    if cond <= 0:
-        print("Error: Minimum is 1")
-    if cond > no_of_elements:
-        print("Error: Maximum is " + str(no_of_elements))
-cond =- 1
-Simulate().down_enter(cond)
-print("Added Location: "+ elem[cond].text)
-sleep(1)
+chooseSupplier()
 
-# Simulate().click_by_xpath("//div[@id='DirectReturn_LOC_CODE_chzn']")
-# Simulate().click_by_xpath("//div[@id='DirectReturn_LOC_CODE_chzn']//div[@class='chzn-drop']//ul[@class='chzn-results']//li[@id='DirectReturn_LOC_CODE_chzn_o_0']")
-print("Added Location")
+chooseLocation()
 
 elem = Configs.drv.find_element_by_xpath("//table[@id='DataTables_Table_0']//tbody[@class='myDatatableClass']//tr[@class='odd']//td") #[0]
 Configs.drv.execute_script("arguments[0].click();", elem)
@@ -85,15 +90,24 @@ while True:
     search_code=raw_input("Enter Search Code: ")
     # Insert the Data
     Simulate().input_by_id("keyword", search_code)
-    print("Entered Search Code " + search_code)
     sleep(1)
-
-    # Display Results
-    print("Displayed Item with Search Code: " + search_code)
+    
     # Checking Results
-    if Simulate().get_text_by_xpath("//*[@id='lookUp_search']/div[1]/table/tbody/tr/td") == "No results found or no SUPPLIER selected.":
+    if search_code.lower() == "exit":
+        Configs.drv.close()
+        exit()
+    elif 0 == 1:
+        exit()
+        # Press Esc
+        # Tapos enter S/s or L/l to change
+        # s for supplier l location
+        # dito mo lalagay yung para tawagin ulit yung supplier and dept
+    elif Simulate().get_text_by_xpath("//*[@id='lookUp_search']/div[1]/table/tbody/tr/td") == "No results found or no SUPPLIER selected.":
+        print("Entered Search Code " + search_code)
         print("No results found or no SUPPLIER selected.")
     else:
+        print("Entered Search Code " + search_code)
+        print("Displayed Item with Search Code: " + search_code)
         no_of_items=len(Simulate().get_elements_by_xpath("//*[@id='lookUp_search']/div[1]/table/tbody/tr[@class='can_be_selected']"))#"))
         print("Please refer to the number of items on the list given by the modal.")
         if no_of_items > 1:
