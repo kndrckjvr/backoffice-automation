@@ -40,7 +40,6 @@ sudo pip install selenium
 ## D. INSTALL VISUAL STUDIO CODE
 * Download Visual Studio Code
 * https://code.visualstudio.com/ .deb file
-* 
 ```
 sudo dpkg -i <name-of-the-file.deb()>
 sudo apt-get install -f
