@@ -14,7 +14,7 @@ Simulate().click_by_xpath("//*[@id='Reports2']/a")
 # Open Direct Receiving
 Simulate().click_by_xpath("//*[@id='Directreceivingreport']/a")
 
-SignOut().signOut()
+SignOut().signOut()1231312312
 
 # Start Date
 # End Date

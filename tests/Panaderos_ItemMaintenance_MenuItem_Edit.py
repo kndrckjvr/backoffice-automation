@@ -4,6 +4,8 @@ from utils.signout import SignOut
 from utils.simulate import Simulate
 from time import sleep
 
+
+# Wala lang gusto ko lang magcomment
 # Login to Login Page
 Login().login("http://cloud.jimac-inc.com/panadero", Configs.usr, Configs.pwd)
 
